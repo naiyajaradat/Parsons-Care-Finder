@@ -6,121 +6,120 @@
 <title>Parsons Care Finder</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Public+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&display=swap" rel="stylesheet">
 <style>
-/* Layout idea: left-aligned editorial column, ink on paper, yellow marker for what matched, results as ruled rows with a cost-colored rail instead of boxed cards. */
+/* Layout idea: black, white and Parsons red only. Wide heavy headlines over a double bar, ruled list rows with a left bar, square corners, no decoration beyond the bars. */
 :root{
-  --paper:#F4F4F0; --panel:#FFFFFF; --ink:#14161A; --muted:#565C64; --rule:#D8D9D3;
-  --mark:#FFD84A; --markink:#14161A;
-  --free:#0E7551; --zero:#1A5CB0; --copay:#9A5400; --incl:#5B4BA8;
-  --crisis:#B8231C; --crisisbg:#FCECEA;
-  --display:"Bricolage Grotesque","Helvetica Neue",Arial,sans-serif;
-  --body:"Public Sans","Helvetica Neue",Arial,sans-serif;
+  --paper:#FFFFFF; --panel:#FFFFFF; --ink:#000000; --muted:#4A4A4A; --rule:#CFCFCF; --soft:#F2F2F2;
+  --red:#E42A1D; --onred:#FFFFFF;
+  --display:"Archivo","Helvetica Neue",Helvetica,Arial,sans-serif;
+  --body:"Archivo","Helvetica Neue",Helvetica,Arial,sans-serif;
   color-scheme:light;
 }
 @media (prefers-color-scheme:dark){
   :root:not([data-theme="light"]){
-    --paper:#111215; --panel:#1A1C20; --ink:#F1F1ED; --muted:#A5AAB1; --rule:#33363C;
-    --free:#4CC49A; --zero:#7DB1F2; --copay:#E8A94A; --incl:#B3A6F0;
-    --crisis:#FF8179; --crisisbg:#2B1715; color-scheme:dark;
+    --paper:#000000; --panel:#0E0E0E; --ink:#FFFFFF; --muted:#BDBDBD; --rule:#3A3A3A; --soft:#161616; color-scheme:dark;
   }
 }
-:root[data-theme="dark"]{
-  --paper:#111215; --panel:#1A1C20; --ink:#F1F1ED; --muted:#A5AAB1; --rule:#33363C;
-  --free:#4CC49A; --zero:#7DB1F2; --copay:#E8A94A; --incl:#B3A6F0;
-  --crisis:#FF8179; --crisisbg:#2B1715; color-scheme:dark;
-}
+:root[data-theme="dark"]{--paper:#000000; --panel:#0E0E0E; --ink:#FFFFFF; --muted:#BDBDBD; --rule:#3A3A3A; --soft:#161616; color-scheme:dark}
 *{box-sizing:border-box}
 html,body{margin:0}
-body{background:var(--paper);color:var(--ink);font:400 16px/1.55 var(--body);-webkit-font-smoothing:antialiased}
+body{background:var(--paper);color:var(--ink);font:400 16px/1.55 var(--body);font-stretch:100%;-webkit-font-smoothing:antialiased}
 .wrap{max-width:1020px;margin:0 auto;padding:0 20px}
-a{color:inherit;text-underline-offset:3px}
-a:hover{text-decoration-thickness:2px}
-:focus-visible{outline:3px solid var(--ink);outline-offset:2px;border-radius:2px}
-h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;line-height:1.1}
+a{color:inherit;text-underline-offset:3px;text-decoration-thickness:1.5px}
+a:hover{color:var(--red);text-decoration-thickness:2.5px}
+:focus-visible{outline:3px solid var(--red);outline-offset:2px}
+h1,h2,h3{font-family:var(--display);font-stretch:125%;font-weight:800;text-wrap:balance;margin:0;line-height:1.08;letter-spacing:-.01em}
 
-/* crisis strip */
-.crisis-strip{background:var(--crisisbg);border-bottom:2px solid var(--crisis);font-size:14px}
+/* top red strip: emergency numbers */
+.crisis-strip{background:var(--red);color:var(--onred);font-size:14px;font-weight:500}
 .crisis-strip .wrap{display:flex;flex-wrap:wrap;gap:6px 22px;padding-top:10px;padding-bottom:10px;align-items:center}
-.crisis-strip strong{color:var(--crisis);font-weight:600}
-.crisis-strip span b{font-weight:600}
+.crisis-strip strong{font-weight:800}
+.crisis-strip b{font-weight:800}
 
-header.top{padding:34px 0 8px}
-.eyebrow{font-size:13px;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);font-weight:600;margin:0 0 10px}
-h1{font-size:clamp(34px,6vw,60px);font-weight:700;letter-spacing:-.02em;max-width:16ch}
-.lede{max-width:56ch;color:var(--muted);margin:14px 0 0;font-size:17px}
+/* masthead: black bar + double bar */
+.masthead{background:var(--ink);color:var(--paper)}
+.masthead .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;padding-top:12px;padding-bottom:12px;font-stretch:125%;font-weight:700;font-size:14px;letter-spacing:.02em}
+.masthead span:last-child{font-weight:500;opacity:.85}
+.bars{height:14px;border-bottom:4px solid var(--ink);border-top:4px solid var(--ink);margin:0;background:var(--paper)}
+
+header.top{padding:36px 0 6px}
+.eyebrow{font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--red);font-weight:800;margin:0 0 12px;font-stretch:125%}
+h1{font-size:clamp(34px,6.2vw,64px);max-width:15ch}
+.lede{max-width:58ch;color:var(--muted);margin:16px 0 0;font-size:18px}
 
 /* ask */
-.ask{margin-top:26px;background:var(--panel);border:2px solid var(--ink);padding:18px}
-.ask label.q{display:block;font:700 20px/1.2 var(--display);margin-bottom:10px}
-.ask textarea{width:100%;min-height:92px;resize:vertical;padding:12px;font:inherit;color:var(--ink);background:var(--paper);border:1.5px solid var(--rule);border-radius:2px}
-.ask textarea:focus-visible{border-color:var(--ink)}
-.row-actions{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-top:12px}
-button,.btn{font:600 15px/1 var(--body);cursor:pointer}
-.go{background:var(--ink);color:var(--paper);border:0;padding:14px 22px;border-radius:2px}
-.go:hover{background:var(--muted)}
-.ghost{background:transparent;color:var(--ink);border:1.5px solid var(--ink);padding:12px 16px;border-radius:2px}
-.ghost:hover{background:var(--mark);color:var(--markink);border-color:var(--markink)}
+.ask{margin-top:28px;background:var(--panel);border:3px solid var(--ink);padding:20px}
+.ask label.q{display:block;font:800 22px/1.2 var(--display);font-stretch:125%;margin-bottom:12px}
+.ask textarea{width:100%;min-height:96px;resize:vertical;padding:12px;font:inherit;color:var(--ink);background:var(--paper);border:2px solid var(--ink);border-radius:0}
+.row-actions{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-top:14px}
+button{font:700 15px/1 var(--body);cursor:pointer;border-radius:0}
+.go{background:var(--red);color:var(--onred);border:2px solid var(--red);padding:14px 24px}
+.go:hover{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+.ghost{background:transparent;color:var(--ink);border:2px solid var(--ink);padding:12px 18px}
+.ghost:hover{background:var(--ink);color:var(--paper)}
 .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
-.chip{background:transparent;border:1.5px solid var(--rule);color:var(--ink);padding:8px 12px;border-radius:999px;font-size:14px;font-weight:500}
-.chip:hover{border-color:var(--ink);background:var(--mark);color:var(--markink)}
-.chips-label{font-size:13px;color:var(--muted);margin:16px 0 0}
-.privacy{font-size:13px;color:var(--muted);margin:12px 0 0;max-width:70ch}
+.chip{background:transparent;border:2px solid var(--ink);color:var(--ink);padding:8px 12px;font-size:14px;font-weight:600}
+.chip:hover{background:var(--red);border-color:var(--red);color:var(--onred)}
+.chips-label{font-size:13px;color:var(--muted);margin:18px 0 0;text-transform:uppercase;letter-spacing:.05em;font-weight:700}
+.privacy{font-size:13px;color:var(--muted);margin:14px 0 0;max-width:72ch}
 
 /* settings bar */
-.bar{display:flex;flex-wrap:wrap;gap:12px 28px;align-items:center;margin:22px 0 0;padding:12px 0;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);font-size:14px}
+.bar{display:flex;flex-wrap:wrap;gap:12px 28px;align-items:center;margin:24px 0 0;padding:12px 0;border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);font-size:14px;font-weight:500}
 .bar label{display:flex;gap:8px;align-items:center}
-.bar select{font:inherit;padding:7px 8px;background:var(--panel);color:var(--ink);border:1.5px solid var(--rule);border-radius:2px;max-width:100%}
-.bar input[type=checkbox]{width:18px;height:18px;accent-color:var(--ink)}
+.bar select{font:inherit;padding:8px;background:var(--paper);color:var(--ink);border:2px solid var(--ink);border-radius:0;max-width:100%}
+.bar input[type=checkbox]{width:20px;height:20px;accent-color:var(--red)}
 
 /* results */
 #status{margin:22px 0 0;min-height:24px}
-.note{background:var(--panel);border-left:4px solid var(--mark);padding:10px 14px;margin:0 0 14px;max-width:70ch}
-.matched{display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-size:14px;margin:0 0 6px}
-mark{background:var(--mark);color:var(--markink);padding:2px 8px;border-radius:2px;font-weight:600}
-.urgent{background:var(--crisisbg);border:2px solid var(--crisis);padding:18px;margin:20px 0}
-.urgent h2{color:var(--crisis);font-size:26px;margin-bottom:8px}
-.urgent ul{margin:10px 0 0;padding-left:20px}
+.note{background:var(--soft);border-left:6px solid var(--red);padding:10px 14px;margin:0 0 14px;max-width:70ch}
+.matched{display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-size:14px;margin:0 0 6px;font-weight:600}
+mark{background:var(--red);color:var(--onred);padding:2px 9px;font-weight:700}
+.urgent{background:var(--ink);color:var(--paper);border-left:10px solid var(--red);padding:20px;margin:22px 0}
+.urgent h2{color:var(--paper);font-size:26px;margin-bottom:8px}
+.urgent b{color:var(--paper)}
+.urgent ul{margin:12px 0 0;padding-left:20px}
 .urgent li{margin:6px 0}
-section.group{margin-top:34px}
-section.group>h2{font-size:24px;display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
-section.group>h2 small{font:500 14px var(--body);color:var(--muted)}
+section.group{margin-top:36px}
+section.group>h2{font-size:26px;display:flex;gap:12px;align-items:baseline;flex-wrap:wrap}
+section.group>h2 small{font:500 14px var(--body);font-stretch:100%;color:var(--muted)}
 section.group>p.sub{margin:6px 0 0;color:var(--muted);font-size:14px;max-width:70ch}
-.list{margin:14px 0 0;padding:0;list-style:none;border-top:1px solid var(--rule)}
-.item{display:grid;grid-template-columns:6px minmax(0,1fr);gap:0 16px;padding:18px 0;border-bottom:1px solid var(--rule)}
-.rail{background:var(--rule);border-radius:1px}
-.item.c-free .rail{background:var(--free)}
-.item.c-zero .rail{background:var(--zero)}
-.item.c-copay .rail{background:var(--copay)}
-.item.c-incl .rail{background:var(--incl)}
+.list{margin:14px 0 0;padding:0;list-style:none;border-top:3px solid var(--ink)}
+.item{display:grid;grid-template-columns:8px minmax(0,1fr);gap:0 16px;padding:20px 0;border-bottom:1px solid var(--rule)}
+.rail{background:var(--rule)}
+.item.k-campus .rail{background:var(--red)}
+.item.k-plan .rail{background:var(--ink)}
+.item.k-community .rail{background:var(--muted)}
 .item h3{font-size:21px}
-.meta{display:flex;flex-wrap:wrap;gap:6px 12px;align-items:center;margin:6px 0 0;font-size:13px;color:var(--muted)}
-.badge{font-size:12px;font-weight:600;letter-spacing:.02em;padding:3px 8px;border-radius:2px;border:1.5px solid currentColor;white-space:nowrap}
-.c-free .badge{color:var(--free)} .c-zero .badge{color:var(--zero)} .c-copay .badge{color:var(--copay)} .c-incl .badge{color:var(--incl)}
+.meta{display:flex;flex-wrap:wrap;gap:6px 12px;align-items:center;margin:8px 0 0;font-size:13px;color:var(--muted);font-weight:500}
+.badge{font-size:12px;font-weight:800;letter-spacing:.03em;padding:3px 8px;border:2px solid var(--ink);color:var(--ink);white-space:nowrap;text-transform:uppercase}
+.c-free .badge,.c-zero .badge{background:var(--ink);color:var(--paper)}
 .item p.what{margin:10px 0 0;max-width:68ch}
 .how{margin:10px 0 0;padding:0;list-style:none;display:grid;gap:4px;font-size:14.5px;max-width:68ch}
-.how li{padding-left:16px;position:relative}
-.how li::before{content:"";position:absolute;left:0;top:.7em;width:7px;height:2px;background:var(--ink)}
-.links{display:flex;flex-wrap:wrap;gap:6px 18px;margin:12px 0 0;font-size:14px;font-weight:600}
+.how li{padding-left:18px;position:relative}
+.how li::before{content:"";position:absolute;left:0;top:.62em;width:9px;height:3px;background:var(--red)}
+.links{display:flex;flex-wrap:wrap;gap:6px 18px;margin:12px 0 0;font-size:14px;font-weight:700}
 .matchtags{margin-top:10px;display:flex;gap:6px;flex-wrap:wrap}
-.matchtags span{font-size:12px;background:var(--mark);color:var(--markink);padding:2px 7px;border-radius:2px;font-weight:600}
-.empty{padding:18px;background:var(--panel);border:1.5px dashed var(--rule);max-width:70ch}
+.matchtags span{font-size:12px;background:var(--red);color:var(--onred);padding:2px 8px;font-weight:700}
+.empty{padding:18px;background:var(--soft);border:2px solid var(--ink);max-width:70ch}
+.empty p{margin:0 0 8px}
 
 /* events */
-.ev{display:grid;grid-template-columns:76px minmax(0,1fr);gap:16px;padding:16px 0;border-bottom:1px solid var(--rule)}
-.ev .date{font-family:var(--display);font-weight:700;line-height:1;text-align:center;border:2px solid var(--ink);padding:8px 0}
-.ev .date b{display:block;font-size:28px}
-.ev .date i{font:600 12px var(--body);letter-spacing:.06em;text-transform:uppercase;font-style:normal}
+.ev{display:grid;grid-template-columns:84px minmax(0,1fr);gap:16px;padding:16px 0;border-bottom:1px solid var(--rule)}
+.ev .date{font-family:var(--display);font-stretch:125%;font-weight:800;line-height:1;text-align:center;border:3px solid var(--ink);padding:9px 0;align-self:start}
+.ev .date b{display:block;font-size:26px}
+.ev .date i{font:700 11px var(--body);letter-spacing:.08em;text-transform:uppercase;font-style:normal;font-stretch:100%}
+.ev .date.rec{background:var(--red);border-color:var(--red);color:var(--onred)}
 .ev h3{font-size:19px}
 .ev p{margin:4px 0 0;font-size:14.5px;color:var(--muted)}
 .feed-state{font-size:13px;color:var(--muted);display:flex;gap:8px;align-items:center;margin:8px 0 0}
-.dot{width:9px;height:9px;border-radius:50%;background:var(--muted);display:inline-block}
-.dot.live{background:var(--free)}
+.dot{width:10px;height:10px;background:var(--muted);display:inline-block}
+.dot.live{background:var(--red)}
+.list-top{border-top:3px solid var(--ink);margin-top:14px}
 
-footer{margin:60px 0 40px;padding-top:20px;border-top:2px solid var(--ink);font-size:13.5px;color:var(--muted)}
+footer{margin:64px 0 40px;padding-top:20px;border-top:4px double var(--ink);font-size:13.5px;color:var(--muted)}
 footer p{max-width:78ch;margin:0 0 10px}
-.sr{position:absolute;left:-9999px}
-@media (max-width:520px){.ev{grid-template-columns:60px minmax(0,1fr)}.item{gap:0 12px}}
+@media (max-width:520px){.ev{grid-template-columns:68px minmax(0,1fr)}.item{gap:0 12px}}
 @media (prefers-reduced-motion:no-preference){.item,.ev{animation:in .25s ease-out}@keyframes in{from{opacity:.4;transform:translateY(4px)}to{opacity:1;transform:none}}}
 </style>
 </head>
@@ -136,9 +135,12 @@ footer p{max-width:78ch;margin:0 0 10px}
   </div>
 </div>
 
+<div class="masthead"><div class="wrap"><span>Student Health Services</span><span>Care Finder · student-built prototype</span></div></div>
+<div class="bars" aria-hidden="true"></div>
+
 <main class="wrap">
   <header class="top">
-    <p class="eyebrow">Student Health Services · The New School</p>
+    <p class="eyebrow">Parsons students</p>
     <h1>Tell us what's going on. We'll find the help.</h1>
     <p class="lede">Describe a physical or mental health concern in your own words. You'll get the New School offices, groups, and student-insurance benefits that fit, with what each one costs you.</p>
   </header>
@@ -172,7 +174,7 @@ footer p{max-width:78ch;margin:0 0 10px}
 
   <section class="group" id="eventsSec" aria-labelledby="evh">
     <h2 id="evh">Events and groups <small id="evCount"></small></h2>
-    <p class="sub">Pulled from the live events feed. Events that match your search come first.</p>
+    <p class="sub">Standing services with set times, plus dated events once offices publish them. Items that match your search come first.</p>
     <div class="feed-state"><span class="dot" id="feedDot"></span><span id="feedText">Checking the feed…</span></div>
     <div id="events"></div>
   </section>
@@ -184,6 +186,7 @@ footer p{max-width:78ch;margin:0 0 10px}
   </footer>
 </main>
 
+<script type="application/json" id="events-embedded">{"updatedAt": "2026-11-26T23:30:00-05:00", "events": [{"title": "Same-day counseling walk-in", "repeat": {"days": [1, 2, 3, 4, 5], "short": "M–F", "label": "Mon–Fri", "time": "2:00–3:00 p.m."}, "format": "In person", "place": "80 Fifth Avenue, 3rd floor", "office": "Student Health Services", "url": "https://www.newschool.edu/health-services/mental-health", "note": "For urgent concerns. Arrive by 2:45 p.m. Closed on university holidays.", "cats": ["anxiety", "mood", "trauma", "grief", "suicidal"]}, {"title": "Evening counseling by telehealth", "repeat": {"days": [1, 2, 3, 4], "short": "M–Th", "label": "Mon–Thu", "time": "after 5:00 p.m."}, "format": "Telehealth", "place": "Book on the SHS portal. You must be in New York State.", "office": "Student Health Services", "url": "https://shsportal.newschool.edu", "note": "Evening sessions are telehealth only.", "cats": ["anxiety", "mood", "stress", "relationships"]}]}</script>
 <script>
 /*PURE-START*/
 const CATS = {
@@ -220,7 +223,7 @@ const RES = [
   /* ---- campus: Student Health Services ---- */
   {id:"counseling",kind:"campus",cost:"free",costLabel:"Free",name:"Counseling Services",office:"Student Health Services",
    what:"Short-term counseling with licensed counselors, in person or by telehealth. Open to every student whether or not you have the student plan. If you need longer-term or specialized care, your counselor helps you find it nearby.",
-   how:["Book your first visit on the SHS portal, or call 212.229.1671, option 1.","In person: 80 Fifth Avenue, 3rd floor. Hours are Mon–Tue 9–6, Wed–Thu 9–5, Fri 10–5, closed on university holidays.","Telehealth: check in through the portal. You must be in New York State. Private telehealth booths are at 39 West 13th Street, 2nd floor.","Evening sessions after 5 p.m. Mon–Thu are telehealth only."],
+   how:["Book your first visit on the SHS portal, or call 212.229.1671, option 1.","Staff speak English, Spanish, Japanese, Hebrew, Turkish, Portuguese, Farsi, Pashto, and German.","In person: 80 Fifth Avenue, 3rd floor. Hours are Mon–Tue 9–6, Wed–Thu 9–5, Fri 10–5, closed on university holidays.","Telehealth: check in through the portal. You must be in New York State. Private telehealth booths are at 39 West 13th Street, 2nd floor.","Evening sessions after 5 p.m. Mon–Thu are telehealth only."],
    links:[["Counseling Services","https://www.newschool.edu/health-services/mental-health"],["SHS portal",SHS_PORTAL],["Reserve a telehealth booth","https://student-reservations.newschool.edu/reserve/spaces/studentunion"]],
    tags:{anxiety:3,mood:3,stress:3,grief:3,relationships:3,suicidal:2,eating:2,trauma:2,lonely:2,sleep:1,identity:1,substance:1,adhd:1}},
   {id:"walkin",kind:"campus",cost:"free",costLabel:"Free",name:"Same-day counseling walk-in",office:"Student Health Services",
@@ -260,7 +263,7 @@ const RES = [
    tags:{stress:3,anxiety:2,mood:2,relationships:1}},
   {id:"togetherall",kind:"campus",cost:"free",costLabel:"Free",name:"Togetherall",office:"Student Health Services",
    what:"An anonymous online community for support and connection with other students. Useful at odd hours or when you aren't ready to talk to someone in person.",
-   how:["Ask SHS for the current sign-up link: shs@newschool.edu."],
+   how:["Join for free by registering with your newschool.edu email. Start from the Counseling Services page."],
    links:[["Counseling Services","https://www.newschool.edu/health-services/mental-health"]],
    tags:{lonely:3,mood:2,anxiety:2,stress:1,sleep:1}},
   {id:"basics",kind:"campus",cost:"free",costLabel:"Free",name:"Alcohol and substance support",office:"Student Health Services",
@@ -278,6 +281,16 @@ const RES = [
    how:["212.229.1671, option 2, or use the SHS portal."],
    links:[["Immunizations","https://www.newschool.edu/health-services/medical-immunizations"]],
    tags:{vaccine:3}},
+  {id:"whp",kind:"campus",cost:"free",costLabel:"Free",name:"Wellness and Health Promotion",office:"Student Health Services",
+   what:"The prevention side of SHS. The director meets students one-on-one, runs the Peer Health Advocacy program, and offers workshops and group programs on wellness.",
+   how:["wellness@newschool.edu","SHS has also pointed students to a Wellness Corner at 39 West 13th Street. Confirm it's open before you go."],
+   links:[["Peer Health Advocacy","https://ww3.newschool.edu/student-health-services/peer-health-advocacy/"]],
+   tags:{stress:2,mindfulness:2,eating:1,sexual:1,lonely:1,identity:1,substance:1}},
+  {id:"pha",kind:"campus",cost:"free",costLabel:"Free",name:"Peer Health Advocacy",office:"Wellness and Health Promotion",
+   what:"Student leaders, advised by SHS staff, run body-positivity groups, stress-management events with music, meditation and acupressure, and an Anti-Oppression Workshop open to students, staff, and faculty. You can also apply to become an advocate.",
+   how:["wellness@newschool.edu"],
+   links:[["Peer Health Advocacy","https://ww3.newschool.edu/student-health-services/peer-health-advocacy/"]],
+   tags:{stress:2,eating:2,identity:2,lonely:2,mindfulness:2}},
   {id:"selfscreen",kind:"campus",cost:"free",costLabel:"Free",name:"Online mental health self-screening",office:"ULifeline, linked by SHS",
    what:"A private online questionnaire that helps you see whether what you're feeling is worth talking to someone about.",
    how:["Takes a few minutes, no appointment."],
@@ -435,7 +448,7 @@ const onlyFree=()=>$("#onlyFree").checked;
 
 function itemRow(entry){
   const r=entry.r;
-  const li=el("li",{class:"item c-"+r.cost});
+  const li=el("li",{class:"item c-"+r.cost+" k-"+r.kind});
   li.append(el("div",{class:"rail","aria-hidden":"true"}));
   const body=el("div");
   body.append(el("h3",{text:r.name}));
@@ -564,60 +577,72 @@ const MONTHS=["JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEP","OCT","NOV",
 function renderEvents(){
   const box=$("#events"); box.replaceChildren();
   const now=Date.now()-3600*1000;
-  let evs=state.events.filter(e=>e.when&&e.when.getTime()>=now).sort((a,b)=>a.when-b.when);
+  const evs=state.events.filter(e=>e.repeat||e.when.getTime()>=now);
   const mine=Object.keys(state.cats);
-  evs.forEach(e=>{e.rel=(e.cats||[]).some(c=>mine.includes(c))});
-  if(mine.length) evs.sort((a,b)=>(b.rel?1:0)-(a.rel?1:0)||a.when-b.when);
-  $("#evCount").textContent=evs.length?evs.length+" upcoming":"";
+  evs.forEach(e=>{e.rel=mine.length>0&&(e.cats||[]).some(c=>mine.includes(c))});
+  evs.sort((a,b)=>(b.rel?1:0)-(a.rel?1:0)||(a.repeat?0:1)-(b.repeat?0:1)||((a.when||0)-(b.when||0)));
+  $("#evCount").textContent=evs.length?evs.length+" listed":"";
   if(!evs.length){
     box.append(el("div",{class:"empty"},
-      el("p",{text:state.feedOk
-        ? "No upcoming events are in the feed right now."
-        : "The live events feed isn't connected yet, so no dates are shown here. Rather than guess, this page won't list events it can't verify."}),
-      el("p",null,"For current groups and workshops, check ",safeLink("New School Events","https://event.newschool.edu"),", Narwhal Nation, or email shs@newschool.edu.")));
+      el("p",{text:state.feedOk?"No events are listed right now.":"The events list didn't load."}),
+      el("p",null,"For current groups and workshops, check ",safeLink("New School Events","https://events.newschool.edu/"),", ",safeLink("Narwhal Nation","https://narwhalnation.newschool.edu/events"),", or email shs@newschool.edu.")));
     return;
   }
   for(const e of evs.slice(0,12)){
-    const d=e.when;
-    const when=d.toLocaleString([], {weekday:"short",hour:"numeric",minute:"2-digit"});
-    const row=el("div",{class:"ev"},
-      el("div",{class:"date","aria-hidden":"true"},el("i",{text:MONTHS[d.getMonth()]}),el("b",{text:d.getDate()})),
+    let dateBox, line;
+    if(e.repeat){
+      dateBox=el("div",{class:"date rec","aria-hidden":"true"},el("i",{text:"Every"}),el("b",{text:e.repeat.short||"Wk"}));
+      line=[(e.repeat.label?e.repeat.label+", ":"")+(e.repeat.time||""),e.format,e.place,e.office];
+    } else {
+      const d=e.when;
+      dateBox=el("div",{class:"date","aria-hidden":"true"},el("i",{text:MONTHS[d.getMonth()]}),el("b",{text:d.getDate()}));
+      line=[d.toLocaleString([], {weekday:"short",hour:"numeric",minute:"2-digit"}),e.format,e.place,e.office];
+    }
+    const ln=e.url?safeLink("Details and sign-up",e.url):null;
+    box.append(el("div",{class:"ev"},dateBox,
       el("div",null,
-        el("h3",{text:String(e.title||"Event")}),
-        el("p",{text:[when,e.format,e.place,e.office].filter(Boolean).join(" · ")}),
+        el("h3",{text:String(e.title)}),
+        el("p",{text:line.filter(Boolean).join(" · ")}),
         e.note?el("p",{text:String(e.note)}):null,
-        e.url&&safeLink("Details and sign-up",e.url)?el("div",{class:"links"},safeLink("Details and sign-up",e.url)):null,
-        e.rel?el("div",{class:"matchtags"},el("span",{text:"Matches your search"})):null));
-    box.append(row);
+        ln?el("div",{class:"links"},ln):null,
+        e.rel?el("div",{class:"matchtags"},el("span",{text:"Matches your search"})):null)));
   }
 }
-function ingestEvents(snap){
-  const docs=snap&&(snap.docs||[]);
-  const list=[];
-  const each=docs.length?docs:[];
-  for(const d of each){
-    const v=typeof d.data==="function"?d.data():d;
-    if(!v||!v.start) continue;
+function ingestEvents(list){
+  const out=[];
+  for(const v of (Array.isArray(list)?list:[])){
+    if(!v||!v.title) continue;
+    const base={title:v.title,format:v.format,place:v.place,office:v.office,url:v.url,note:v.note,cats:Array.isArray(v.cats)?v.cats:[]};
+    if(v.repeat&&typeof v.repeat==="object"){ out.push(Object.assign(base,{repeat:v.repeat})); continue; }
     const when=new Date(v.start);
-    if(isNaN(when)) continue;
-    list.push({title:v.title,when,format:v.format,place:v.place,office:v.office,url:v.url,note:v.note,cats:Array.isArray(v.cats)?v.cats:[]});
+    if(!v.start||isNaN(when)) continue;
+    out.push(Object.assign(base,{when}));
   }
-  state.events=list; state.feedOk=true;
+  state.events=out; state.feedOk=true;
   $("#feedDot").classList.add("live");
-  $("#feedText").textContent="Events feed loaded";
   renderEvents();
 }
+function embeddedFeed(){
+  try{ const n=$("#events-embedded"); return n?JSON.parse(n.textContent):null; }catch(e){ return null; }
+}
 async function connectFeed(){
+  let data=null, saved=false, why="";
   try{
-    const r=await fetch("events.json",{cache:"no-cache"});
-    if(!r.ok) throw new Error("http "+r.status);
-    const j=await r.json();
-    ingestEvents({docs:Array.isArray(j.events)?j.events:[]});
-    const t=j.updatedAt?new Date(j.updatedAt):null;
-    $("#feedText").textContent=(t&&!isNaN(t))?"Events feed loaded · refreshed "+t.toLocaleDateString([], {month:"short",day:"numeric"}):"Events feed loaded";
+    const r=await fetch(new URL("events.json",location.href).href,{cache:"no-cache"});
+    if(!r.ok) throw new Error("HTTP "+r.status);
+    data=await r.json();
   }catch(e){
-    $("#feedText").textContent="Events feed unavailable right now.";
+    why=(e&&e.message)?e.message:"unknown error";
+    data=embeddedFeed(); saved=!!data;
   }
+  if(!data){
+    $("#feedText").textContent="Events list couldn't load ("+why+").";
+    renderEvents(); return;
+  }
+  ingestEvents(data.events);
+  const t=data.updatedAt?new Date(data.updatedAt):null;
+  const when=(t&&!isNaN(t))?" · updated "+t.toLocaleDateString([], {month:"short",day:"numeric"}):"";
+  $("#feedText").textContent=(saved?"Showing the copy saved with this page":"Events list loaded")+when;
 }
 async function connectSample(){
   try{

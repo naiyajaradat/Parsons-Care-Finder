@@ -1,4 +1,25 @@
 {
-  "updatedAt": null,
-  "events": []
+  "updatedAt": "2026-11-26T23:30:00-05:00",
+  "events": [
+    {
+      "title": "Same-day counseling walk-in",
+      "repeat": {"days": [1,2,3,4,5], "short": "M–F", "label": "Mon–Fri", "time": "2:00–3:00 p.m."},
+      "format": "In person",
+      "place": "80 Fifth Avenue, 3rd floor",
+      "office": "Student Health Services",
+      "url": "https://www.newschool.edu/health-services/mental-health",
+      "note": "For urgent concerns. Arrive by 2:45 p.m. Closed on university holidays.",
+      "cats": ["anxiety","mood","trauma","grief","suicidal"]
+    },
+    {
+      "title": "Evening counseling by telehealth",
+      "repeat": {"days": [1,2,3,4], "short": "M–Th", "label": "Mon–Thu", "time": "after 5:00 p.m."},
+      "format": "Telehealth",
+      "place": "Book on the SHS portal. You must be in New York State.",
+      "office": "Student Health Services",
+      "url": "https://shsportal.newschool.edu",
+      "note": "Evening sessions are telehealth only.",
+      "cats": ["anxiety","mood","stress","relationships"]
+    }
+  ]
 }
